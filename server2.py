@@ -8,12 +8,17 @@ def hello_world():
 def dojo():
     return 'Dojo!'
 
-@app.route('/say/<name>')
+@app.route('/say/<string:name>')
 def say(name):
     return f"Hi, {name}!"
 
-@app.route('/repeat/<num>/<word>')
+@app.route('/repeat/<int:num>/<string:word>')
 def repeat(num,word):
-    return f"{word} " * int(num)
+    return f"{word} " * num
+
+@app.errorhandler(404)
+def handle_bad_request(e):
+    return 'Sorry! No response. Try again.'
+
 if __name__=="__main__":
     app.run(debug=True)
