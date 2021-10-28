@@ -11,5 +11,9 @@ def dojo():
 @app.route('/say/<name>')
 def say(name):
     return f"Hi, {name}!"
+
+@app.route('/repeat/<num>/<word>')
+def repeat(num,word):
+    return f"{word} " * int(num)
 if __name__=="__main__":
     app.run(debug=True)
